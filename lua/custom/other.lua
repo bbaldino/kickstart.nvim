@@ -16,6 +16,7 @@ return function()
   vim.keymap.set('n', 'gT', '<cmd>tab split | lua vim.lsp.buf.definition()<CR>',
     { desc = '[G]oto definition in new [t]ab' })
 
+  require('luasnip.loaders.from_lua').lazy_load()
   local luasnip = require 'luasnip'
   vim.api.nvim_create_autocmd("ModeChanged", {
     group = vim.api.nvim_create_augroup("UnlinkLuaSnipSnippetOnModeChange", {
