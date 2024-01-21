@@ -6,8 +6,13 @@ return {
 	ls.snippet('rustfmt', ls.text_node '#[rustfmt::skip]'),
 	ls.snippet(
 		{ trig = "atest", name = "async test", dscr = "Define an async test" },
-		fmt("#[tokio::test]\nasync fn {} {{\n\t{}\n}}", {
-			ls.insert_node(1, "foo"),
+		fmt([[
+		#[tokio::test]
+		async fn {} {{
+			{}
+		}}
+		]], {
+			ls.insert_node(1, "test_name"),
 			ls.insert_node(2, "")
 		})
 	)
