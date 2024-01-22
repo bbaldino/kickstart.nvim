@@ -1,4 +1,5 @@
 local ls = require("luasnip")
+local i = ls.i;
 local fmt = require("luasnip.extras.fmt").fmt
 
 --stylua: ignore
@@ -8,12 +9,12 @@ return {
 		{ trig = "atest", name = "async test", dscr = "Define an async test" },
 		fmt([[
 		#[tokio::test]
-		async fn {} {{
+		async fn {}() {{
 			{}
 		}}
 		]], {
-			ls.insert_node(1, "test_name"),
-			ls.insert_node(2, "")
+			i(1, "test_name"),
+			i(2, "")
 		})
 	)
 }
