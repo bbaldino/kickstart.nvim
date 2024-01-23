@@ -44,4 +44,8 @@ return function()
       luasnip.change_choice(1)
     end
   end)
+
+  require('telescope').load_extension('luasnip')
+
+  vim.keymap.set('n', '<leader>sl', '<cmd>Telescope luasnip<CR>', { desc = "[S]earch [L]uasnips" })
 end
