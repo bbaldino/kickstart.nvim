@@ -21,6 +21,17 @@ return function()
 
   require('luasnip.loaders.from_lua').lazy_load()
   local luasnip = require 'luasnip'
+  local types = require("luasnip.util.types")
+  luasnip.config.setup {
+    ext_opts = {
+      [types.choiceNode] = {
+        active = {
+          virt_text = { { "[Choices available]", "PortalOrange" } },
+          hl_mode = "combine"
+        }
+      },
+    }
+  }
   vim.api.nvim_create_autocmd("ModeChanged", {
     group = vim.api.nvim_create_augroup("UnlinkLuaSnipSnippetOnModeChange", {
       clear = true,
