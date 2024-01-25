@@ -61,7 +61,7 @@ return function()
 
   vim.keymap.set('n', '<leader>sl', '<cmd>Telescope luasnip<CR>', { desc = "[S]earch [L]uasnips" })
 
-  function open_cargo_file()
+  local function open_cargo_file()
     local cargo_file = vim.fn.findfile("Cargo.toml", ".;")
     vim.cmd('vnew ' .. cargo_file)
   end
@@ -70,7 +70,7 @@ return function()
     group = vim.api.nvim_create_augroup("rust-cargo", { clear = true }),
     pattern = "*.rs",
     callback = function()
-      vim.keymap.set('n', '<leader>mc', '<cmd>lua open_cargo_file()<CR>',
+      vim.keymap.set('n', '<leader>mc', open_cargo_file,
         { desc = "[M]odify the nearest [C]argo.toml file" })
     end
   })
