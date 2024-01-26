@@ -10,6 +10,8 @@ return function()
     end,
   })
 
+  vim.wo.relativenumber = true
+
   -- Add a shortcut to clear search highlight
   vim.keymap.set('n', '<leader>,', ':nohlsearch<CR>', { desc = 'Clear search highlight' })
 
