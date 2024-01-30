@@ -6,11 +6,6 @@ return {
     "nvim-treesitter/nvim-treesitter",
     "rouge8/neotest-rust",
   },
-  -- config = {
-  --   adapters = {
-  --     ["neotest-rust"] = {}
-  --   }
-  -- }
   keys = {
     {
       "<leader>ct",

@@ -58,8 +58,6 @@ return function()
 
   require('telescope').load_extension('luasnip')
 
-  vim.keymap.set('n', '<leader>sl', '<cmd>Telescope luasnip<CR>', { desc = "[S]earch [L]uasnips" })
-
   local function open_cargo_file()
     local cargo_file = vim.fn.findfile("Cargo.toml", ".;")
     vim.cmd('vnew ' .. cargo_file)
@@ -72,5 +70,13 @@ return function()
       vim.keymap.set('n', '<leader>mc', open_cargo_file,
         { desc = "[M]odify the nearest [C]argo.toml file" })
     end
+  })
+  vim.api.nvim_create_autocmd("BufRead", {
+    group = vim.api.nvim_create_augroup("CmpSourceCargo", { clear = true }),
+    pattern = "Cargo.toml",
+    callback = function()
+      local cmp = require("cmp")
+      cmp.setup.buffer({ sources = { { name = "crates" } } })
+    end,
   })
 end
