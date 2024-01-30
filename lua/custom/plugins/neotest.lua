@@ -1,5 +1,6 @@
 return {
   "nvim-neotest/neotest",
+  event = { "BufEnter *.rs" },
   dependencies = {
     "nvim-lua/plenary.nvim",
     "antoinemadec/FixCursorHold.nvim",
@@ -12,7 +13,7 @@ return {
       function()
         require("neotest").run.run()
       end,
-      desc = "Run closest test"
+      desc = "Run closest test",
     },
     {
       "<leader>cT",

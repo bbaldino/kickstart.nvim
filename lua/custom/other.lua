@@ -18,6 +18,22 @@ return function()
   vim.keymap.set('n', '<leader>th', '<cmd>lua vim.lsp.inlay_hint(0)<CR>', { desc = "Toggle inlay hints" })
   vim.keymap.set('n', '<leader>tc', '<cmd>TSContextToggle<CR>', { desc = "Toggle treesitter context" })
 
+  -- Override K for smarter docs
+  local function show_documentation()
+    local filetype = vim.bo.filetype
+    if filetype == "vim" or filetype == "help" then
+      vim.cmd('h ' .. vim.fn.expand('<cword>'))
+    elseif filetype == "man" then
+      vim.cmd('Man ' .. vim.fn.expand('<cword>'))
+    elseif vim.fn.expand('%:t') == 'Cargo.toml' and require('crates').popup_available() then
+      require('crates').show_popup()
+    else
+      vim.lsp.buf.hover()
+    end
+  end
+
+  vim.keymap.set('n', 'K', show_documentation, { silent = true })
+
   require('luasnip.loaders.from_lua').lazy_load()
   local luasnip = require 'luasnip'
   local types = require("luasnip.util.types")
