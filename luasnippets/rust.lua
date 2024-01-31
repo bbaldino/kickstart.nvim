@@ -1,9 +1,35 @@
 local ls = require("luasnip")
-local s = ls.snippet;
-local t = ls.t;
-local i = ls.i;
-local c = ls.c;
+local s = ls.snippet
+local sn = ls.snippet_node
+local f = ls.function_node
+local t = ls.t
+local i = ls.i
+local c = ls.c
+local d = ls.d
 local fmt = require("luasnip.extras.fmt").fmt
+
+-- A helper snippet to support an "endless" list of clone calls async
+-- often done with a spawn call before the 'async move' block
+local spawn_clones
+spawn_clones = function()
+  return sn(
+    nil,
+    c(1, {
+      t(""),
+      fmt([[
+      let {} = {}.clone();
+        {}
+      ]], {
+        i(1),
+        f(function(values)
+          local value = values[1][1]
+          return '' .. value
+        end, { 1 }),
+        d(2, spawn_clones, {}),
+      })
+    })
+  )
+end
 
 --stylua: ignore
 return {
@@ -39,27 +65,15 @@ return {
   ),
   s({ trig = "spawn", name = "tokio::spawn", descr = "Define a tokio spawn call" },
     fmt([[
-      tokio::spawn({}
-      }});
+    tokio::spawn({{
+      {}
+      async move {{
+        {}
+      }}
+    }});
     ]], {
-      c(1, {
-        fmt([[
-        async move {{
-          {}
-        ]], {
-          i(1, "")
-        }),
-        fmt([[
-        {{
-          {}
-          async move {{
-            {}
-          }}
-        ]], {
-          i(1, ""),
-          i(2, "")
-        })
-      })
+      d(1, spawn_clones, {}),
+      i(2, ""),
     })
   ),
 }

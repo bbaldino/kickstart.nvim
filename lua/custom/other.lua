@@ -32,17 +32,17 @@ return function()
       vim.lsp.buf.hover()
     end
   end
-
   vim.keymap.set('n', 'K', show_documentation, { silent = true })
 
   require('luasnip.loaders.from_lua').lazy_load()
   local luasnip = require 'luasnip'
   local types = require("luasnip.util.types")
   luasnip.config.setup {
+    update_events = { "TextChanged", "TextChangedI" },
     ext_opts = {
       [types.choiceNode] = {
         active = {
-          virt_text = { { "[Choices available]", "PortalOrange" } },
+          virt_text = { { " « ", "PortalOrange" } },
           hl_mode = "combine"
         }
       },
