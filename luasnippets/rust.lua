@@ -65,15 +65,25 @@ return {
   ),
   s({ trig = "spawn", name = "tokio::spawn", descr = "Define a tokio spawn call" },
     fmt([[
-    tokio::spawn({{
-      {}
-      async move {{
-        {}
-      }}
-    }});
+    tokio::spawn({});
     ]], {
-      d(1, spawn_clones, {}),
-      i(2, ""),
+      c(1, {
+        i(1),
+        fmt([[{{
+  {}
+  async move {{
+    {}
+  }}
+}}]], {
+          d(1, spawn_clones, {}),
+          i(2),
+        }),
+        fmt([[async move {{
+  {}
+}}]], {
+          i(1),
+        }),
+      }),
     })
   ),
 }
