@@ -73,7 +73,9 @@ return {
         open_on_run = true,
       },
       adapters = {
-        require("neotest-rust")
+        require("neotest-rust") {
+          args = {"--no-capture"},
+        }
       }
     })
   end
