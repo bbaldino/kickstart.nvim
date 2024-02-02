@@ -17,11 +17,11 @@ spawn_clones = function()
     c(1, {
       t(""),
       fmt([[
-      let {} = {}.clone();
+      let {binding} = {}.clone();
         {}
       ]], {
         i(1),
-        f(function(values)
+        binding = f(function(values)
           local value = values[1][1]
           return '' .. value
         end, { 1 }),
