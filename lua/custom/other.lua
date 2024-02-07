@@ -2,7 +2,7 @@ return function()
   -- Jump to last position in buffer and center it on screen
   vim.api.nvim_create_autocmd('BufReadPost', {
     desc = 'Open file at the last position it was edited earlier',
-    group = misc_augroup,
+    group = vim.api.nvim_create_augroup("resume-last-position", { clear = true }),
     pattern = '*',
     command = 'silent! normal! g`"zz'
   })
