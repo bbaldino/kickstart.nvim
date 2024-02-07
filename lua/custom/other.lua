@@ -96,4 +96,6 @@ return function()
       cmp.setup.buffer({ sources = { { name = "crates" } } })
     end,
   })
+
+  vim.cmd [[colorscheme tokyonight-night]]
 end
