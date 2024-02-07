@@ -16,7 +16,7 @@ return function()
   vim.keymap.set('n', 'gT', '<cmd>tab split | lua vim.lsp.buf.definition()<CR>',
     { desc = '[G]oto definition in new [t]ab' })
 
-  vim.keymap.set('n', '<leader>th', '<cmd>lua vim.lsp.inlay_hint(0)<CR>', { desc = "Toggle inlay hints" })
+  vim.keymap.set('n', '<leader>th', '<cmd>lua vim.lsp.inlay_hint.enable(0)<CR>', { desc = "Toggle inlay hints" })
   vim.keymap.set('n', '<leader>tc', '<cmd>TSContextToggle<CR>', { desc = "Toggle treesitter context" })
 
   -- Override K for smarter docs
