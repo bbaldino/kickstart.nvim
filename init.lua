@@ -600,7 +600,17 @@ local servers = {
         extraArgs = "+nightly"
       },
       check = {
-        command = "clippy"
+        command = "clippy",
+        extraArgs = { "--no-deps" },
+      },
+      procMacro = {
+        enable = true,
+        ignored = {
+          ["async-trait"] = { "async_trait" },
+          ["napi-derive"] = { "napi" },
+          ["tokio-macros"] = { "main" },
+          ["async-recursion"] = { "async_recursion" },
+        },
       },
     },
   },
