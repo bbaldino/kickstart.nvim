@@ -42,7 +42,7 @@ return function()
     ext_opts = {
       [types.choiceNode] = {
         active = {
-          virt_text = { { " « ", "PortalOrange" } },
+          virt_text = { { " « ", "Comment" } },
           hl_mode = "combine"
         }
       },
