@@ -20,6 +20,13 @@ return function()
     { desc = "Toggle inlay hints" })
   vim.keymap.set('n', '<leader>tc', '<cmd>TSContextToggle<CR>', { desc = "Toggle treesitter context" })
 
+  local fk_opts = {
+    cwd = vim.env.XDG_CONFIG_HOME or vim.env.HOME .. "/.config",
+    results_title = "Config",
+  }
+  vim.keymap.set('n', "<leader>sc", function() require('telescope.builtin').find_files(fk_opts) end,
+    { desc = "[S]search [C]onfig files" })
+
   -- Override K for smarter docs
   local function show_documentation()
     local filetype = vim.bo.filetype
