@@ -2,6 +2,7 @@ return {
   "nvim-neotest/neotest",
   event = { "BufEnter *.rs" },
   dependencies = {
+    "nvim-neotest/nvim-nio",
     "nvim-lua/plenary.nvim",
     "antoinemadec/FixCursorHold.nvim",
     "nvim-treesitter/nvim-treesitter",
@@ -74,7 +75,7 @@ return {
       },
       adapters = {
         require("neotest-rust") {
-          args = {"--no-capture"},
+          args = { "--no-capture" },
         }
       }
     })
