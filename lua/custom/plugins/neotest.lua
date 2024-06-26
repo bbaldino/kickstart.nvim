@@ -17,6 +17,13 @@ return {
       desc = "Run closest test",
     },
     {
+      "<leader>cl",
+      function()
+        require("neotest").run.run_last()
+      end,
+      desc = "Run last test",
+    },
+    {
       "<leader>cT",
       function()
         require("neotest").run.run(vim.fn.expand("%"))
