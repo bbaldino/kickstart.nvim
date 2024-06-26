@@ -33,11 +33,11 @@ end
 
 --stylua: ignore
 return {
-  s('rustfmt', t '#[rustfmt::skip]'),
+  s('nofmt', t '#[rustfmt::skip]'),
   s({ trig = "test", name = "test", dscr = "Define a test" },
     fmt([[
       {} {}() {{
-        {}
+          {}
       }}
     ]], {
       c(1, {
@@ -46,6 +46,16 @@ return {
       }),
       i(2, "test_name"),
       i(3, "")
+    })
+  ),
+  s({ trig = "tmod", name = "test module", dscr = "Define a test module" },
+    fmt([[
+      #[cfg(test)]
+      mod test {{
+          {}
+      }}
+      ]], {
+      i(1, "")
     })
   ),
   s({ trig = "pstruct", name = "public struct", dscr = "Define a public struct" },
