@@ -34,6 +34,16 @@ end
 --stylua: ignore
 return {
   s('nofmt', t '#[rustfmt::skip]'),
+  s({ trig = "tmod", name = "test module", dscr = "Define a test module" },
+    fmt([[
+      #[cfg(test)]
+      mod tests {{
+          {}
+      }}
+    ]], {
+      i(0, ""),
+    })
+  ),
   s({ trig = "test", name = "test", dscr = "Define a test" },
     fmt([[
       {} {}() {{
